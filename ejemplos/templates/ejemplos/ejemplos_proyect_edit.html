@@ -1,0 +1,19 @@
+<form method="post" action="{% url 'ejemplos_proyect_edit_save' %}">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{producto_data.id}}"/>
+    <input type="text" name="nombre" value="{{producto_data.nombre}}"/>
+    <input type="text" name="precio" value="{{producto_data.precio}}"/>
+    <input type="text" name="descripcion" value="{{producto_data.descripcion }}"/>
+    <input type="text" name="talla" value="{{producto_data.talla}}"/>
+    <input type="text" name="categoria_id" value="{{producto_data.categoria_id}}"/>
+    <select name="proveedor" multiple>
+        {% for a in proveedor_list %}           
+            {% if a.id in proveedor_data_list %}
+                <option value="{{a.id}}" selected >{{a.nombre}}</option>
+            {% else %}
+                <option value="{{a.id}}">{{a.nombre}}</option>
+            {% endif %}
+       {%endfor %}
+    </select>
+    <input type="submit"/>
+</form>
